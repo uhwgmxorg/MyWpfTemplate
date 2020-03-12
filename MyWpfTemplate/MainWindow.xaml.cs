@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel;
 using System.Windows;
+using System.Windows.Input;
 
 namespace MyWpfTemplate
 {
@@ -12,6 +13,12 @@ namespace MyWpfTemplate
         public event PropertyChangedEventHandler PropertyChanged;
 
         #region INotify Changed Properties  
+        private string message;
+        public string Message
+        {
+            get { return message; }
+            set { SetField(ref message, value, nameof(Message)); }
+        }
 
         // Template for a new INotify Changed Property
         // for using CTRL-R-R
@@ -31,6 +38,7 @@ namespace MyWpfTemplate
         public MainWindow()
         {
             InitializeComponent();
+            DataContext = this;
 
 #if DEBUG
             Title += "    Debug Version " + System.Reflection.Assembly.GetExecutingAssembly().GetName().Version;
@@ -44,8 +52,14 @@ namespace MyWpfTemplate
         /******************************/
         #region Button Events
 
+        /// <summary>
+        /// Button_1_Click
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Button_1_Click(object sender, RoutedEventArgs e)
         {
+            Message = "You pressed Button #1 Beep()";
             System.Console.Beep();
         }
 
@@ -70,6 +84,17 @@ namespace MyWpfTemplate
         /*      Other Events          */
         /******************************/
         #region Other Events
+
+        /// <summary>
+        /// Lable_Message_MouseDown
+        /// Clear Message
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Lable_Message_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            Message = "";
+        }
 
         #endregion
         /******************************/

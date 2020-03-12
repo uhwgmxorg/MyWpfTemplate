@@ -17,3 +17,8 @@ Add PropertyChangedEventHandler Property.
 
 Version 0.2.0.0
 Add version information in windows header.
+
+![img](https://github.com/uhwgmxorg/MyWpfTemplate/blob/master/4.PNG)
+
+Version 0.3.0.0
+Add version information in windows header.
