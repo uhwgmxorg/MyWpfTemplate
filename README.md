@@ -1,5 +1,5 @@
 # MyWpfTemplate
-Just a private WPF Template
+Just a private WPF Template (WPF .Net 4.5)
 
 ![img](https://github.com/uhwgmxorg/MyWpfTemplate/blob/master/1.PNG)
 
@@ -22,3 +22,6 @@ Add version information in windows header.
 
 Version 0.3.0.0
 Add message output in top of the window.
+
+Version 1.0.0.0
+Add NLog (you can use [LogMonitor] (https://uhwgmxorg.com/LogMonitor/) to view the LogFile) and class WindowsSettings to remember the window size and position.

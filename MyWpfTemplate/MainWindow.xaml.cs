@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Input;
@@ -11,6 +12,8 @@ namespace MyWpfTemplate
     public partial class MainWindow : Window, INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
+
+        private NLog.Logger _logger;
 
         #region INotify Changed Properties  
         private string message;
@@ -40,6 +43,8 @@ namespace MyWpfTemplate
             InitializeComponent();
             DataContext = this;
 
+            _logger = NLog.LogManager.GetCurrentClassLogger();
+
 #if DEBUG
             Title += "    Debug Version " + System.Reflection.Assembly.GetExecutingAssembly().GetName().Version;
 #else
@@ -60,6 +65,7 @@ namespace MyWpfTemplate
         private void Button_1_Click(object sender, RoutedEventArgs e)
         {
             Message = "You pressed Button #1 Beep()";
+            _logger.Info(Message);
             System.Console.Beep();
         }
 
@@ -86,6 +92,16 @@ namespace MyWpfTemplate
         #region Other Events
 
         /// <summary>
+        /// Window_Loaded
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            _logger.Info(String.Format("{0} started", Application.Current.MainWindow.GetType().Assembly));
+        }
+
+        /// <summary>
         /// Lable_Message_MouseDown
         /// Clear Message
         /// </summary>
@@ -95,6 +111,17 @@ namespace MyWpfTemplate
         {
             Message = "";
         }
+
+        /// <summary>
+        /// Window_Closing
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Window_Closing(object sender, CancelEventArgs e)
+        {
+            _logger.Info(String.Format("{0} terminated", Application.Current.MainWindow.GetType().Assembly));
+        }
+
 
         #endregion
         /******************************/
