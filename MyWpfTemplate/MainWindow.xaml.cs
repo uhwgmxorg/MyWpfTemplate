@@ -11,9 +11,32 @@ namespace MyWpfTemplate
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
+        #region INotify Changed Properties  
+
+        // Template for a new INotify Changed Property
+        // for using CTRL-R-R
+        private string xxx;
+        public string Xxx
+        {
+            get { return xxx; }
+            set { SetField(ref xxx, value, nameof(Xxx)); }
+        }
+
+        #endregion
+
+
+        /// <summary>
+        /// Construtor
+        /// </summary>
         public MainWindow()
         {
             InitializeComponent();
+
+#if DEBUG
+            Title += "    Debug Version " + System.Reflection.Assembly.GetExecutingAssembly().GetName().Version;
+#else
+            Title += "    Release Version " + System.Reflection.Assembly.GetExecutingAssembly().GetName().Version;
+#endif
         }
 
         /******************************/

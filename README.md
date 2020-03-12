@@ -12,3 +12,8 @@ Add buttons and prepare for bindings.
 
 Version 0.1.1.0
 Add PropertyChangedEventHandler Property.
+
+![img](https://github.com/uhwgmxorg/MyWpfTemplate/blob/master/3.PNG)
+
+Version 0.2.0.0
+Add version information in windows header.
