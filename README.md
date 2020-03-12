@@ -9,3 +9,6 @@ Version 0.0.0.0
 
 Version 0.1.0.0
 Add buttons and prepare for bindings.
+
+Version 0.1.1.0
+Add PropertyChangedEventHandler Property.
