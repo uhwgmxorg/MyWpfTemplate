@@ -44,6 +44,7 @@ namespace MyWpfTemplate
             DataContext = this;
 
             _logger = NLog.LogManager.GetCurrentClassLogger();
+            NLog.GlobalDiagnosticsContext.Set("Application", "This is MyWpfTemplate :-)");
 
 #if DEBUG
             Title += "    Debug Version " + System.Reflection.Assembly.GetExecutingAssembly().GetName().Version;
@@ -109,6 +110,7 @@ namespace MyWpfTemplate
         /// <param name="e"></param>
         private void Lable_Message_MouseDown(object sender, MouseButtonEventArgs e)
         {
+            _logger.Info(String.Format("Delete Message Output"));
             Message = "";
         }
 
@@ -119,9 +121,11 @@ namespace MyWpfTemplate
         /// <param name="e"></param>
         private void Window_Closing(object sender, CancelEventArgs e)
         {
+            string x = NLog.GlobalDiagnosticsContext.Get("Application");  // necessary for the next line
+            _logger.Info($"(From GlobalDiagnosticsContext --> {x}");      // $"()" replacement for String.Format
+
             _logger.Info(String.Format("{0} terminated", Application.Current.MainWindow.GetType().Assembly));
         }
-
 
         #endregion
         /******************************/
